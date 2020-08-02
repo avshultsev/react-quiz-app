@@ -1,0 +1,12 @@
+.activeQuiz {
+    width: 700px;
+    margin: 0 auto;
+}
+
+
+
+@media (max-width: 720px) {
+    .activeQuiz {
+        width: 60%;
+    }
+}

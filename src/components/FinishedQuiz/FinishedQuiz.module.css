@@ -1,0 +1,46 @@
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+}
+
+hr {
+    background-color: #fff;
+}
+
+.check {
+    color: rgba(51, 209, 30, 1);
+}
+
+.times {
+    color: rgba(211, 34, 34, 1);
+}
+
+.buttonWrapper {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.buttonWrapper>button {
+    margin-right: 7px;
+}
+
+.buttonWrapper>:last-child {
+    margin: 0;
+}
+
+@media (max-width: 720px) {
+    .buttonSection {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .buttonSection>button {
+        margin-bottom: 7px;
+        width: inherit;
+    }
+}

@@ -1,0 +1,23 @@
+.answerList {
+    margin: 0;
+    padding: 0;
+}
+
+.activeQuizHeader {
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.activeQuizHeader>* {
+    margin: 0;
+}
+
+.activeQuizHeader>small {
+    display: block;
+}
+
+.questionText {
+    text-align: center;
+}

@@ -1,0 +1,7 @@
+.App {
+  color: rgb(233, 208, 229);
+}
+
+.App>h1 {
+  text-align: center;
+}

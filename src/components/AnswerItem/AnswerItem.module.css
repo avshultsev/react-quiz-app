@@ -1,0 +1,23 @@
+.listItem {
+    list-style-type: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.listItem:hover {
+    cursor: pointer;
+    background-color: rgba(162, 146, 199, 0.877);
+    transition: ease-in .2s;
+}
+
+.listItem.correct {
+    background-color: rgba(51, 209, 30, 0.836);
+    transition: ease-in .3s;
+} /*we don't need to reset :hover's */
+
+.listItem.error {
+    background-color: rgba(211, 34, 34, 0.836);
+    transition: ease-in .3s;
+}
