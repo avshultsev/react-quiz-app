@@ -1,0 +1,23 @@
+.QuizList {
+    text-align: center;
+    width: 100%;    
+}
+
+.QuizList ul {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.QuizList ul li a {
+    text-decoration: none;
+}
+
+.QuizList ul li a:visited {
+    color: #fff;
+}
+
+.QuizList ul li a:hover {
+    transition: color .15s ease-in;
+    color: rgba(255, 255, 255, .4);
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './FinishedQuiz.module.css'
 import Button from '../../UI/Button/Button'
+import { NavLink } from 'react-router-dom'
 
 const FinishedQuiz = props => {
     let correctArr = Object.keys(props.results).filter(key => props.results[key] === 'correct')
@@ -35,7 +36,9 @@ const FinishedQuiz = props => {
             <section className={styles.buttonSection}>
                 <div className={styles.buttonWrapper}>
                     <Button onClick={props.onRestartQuiz} type='primary'>Try again</Button>
-                    <Button type='success'>Choose another quiz</Button>
+                    <NavLink to='/'>
+                        <Button type='success'>Choose another quiz</Button>
+                    </NavLink>
                 </div>
             </section>
         </div>

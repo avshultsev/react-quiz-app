@@ -1,9 +1,12 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import styles from './Menu.module.css'
 import Backdrop from '../../UI/Backdrop/Backdrop'
 
 const links = [
-    1, 2, 3, 4, 5
+    {to: '/',             label: 'Quiz List',      exact: true},
+    {to: '/auth',         label: 'Auth',          exact: false},
+    {to: '/quiz-creator', label: 'Create a quiz', exact: false},
 ]
 
 const Menu = props => {
@@ -15,7 +18,12 @@ const Menu = props => {
                     {links.map( (link, index) => {
                         return (
                             <li key={index}>
-                                <a>Link {link}</a>
+                                <NavLink 
+                                    to={link.to} 
+                                    exact={link.exact}
+                                    onClick={props.onClick}>
+                                        {link.label}
+                                </NavLink>
                             </li>
                         )
                     } )}

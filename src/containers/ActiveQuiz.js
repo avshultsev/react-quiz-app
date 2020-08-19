@@ -147,4 +147,4 @@ class ActiveQuiz extends React.Component {
     }
 }
 
-export default ActiveQuiz
+export default ActiveQuiz;
