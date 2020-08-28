@@ -127,6 +127,8 @@ class ActiveQuiz extends React.Component {
 
         return (
             <div className={styles.activeQuiz}>
+                <h1>It's the React quiz!</h1>
+
                 {this.state.isFinished 
                 ? <FinishedQuiz 
                     quizLength={quizLength}

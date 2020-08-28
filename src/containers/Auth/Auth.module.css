@@ -1,0 +1,15 @@
+.Auth {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.inputSection {
+    margin-bottom: 40px;
+}
+
+.buttonSection {
+    display: flex;
+    justify-content: space-evenly;
+}

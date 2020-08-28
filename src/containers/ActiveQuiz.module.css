@@ -3,7 +3,9 @@
     margin: 0 auto;
 }
 
-
+.activeQuiz h1 {
+    text-align: center;
+}
 
 @media (max-width: 720px) {
     .activeQuiz {

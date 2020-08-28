@@ -1,0 +1,21 @@
+.Input {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.Input label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.Input input {
+    display: block;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
