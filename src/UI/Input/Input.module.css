@@ -19,3 +19,15 @@
     border-radius: 3px;
     box-sizing: border-box;
 }
+
+.Input.invalid > input {
+    border: 2px solid rgb(255, 8, 0);
+}
+
+.Input.valid > input {
+    border: 1px solid #12fe12;
+}
+
+.Input span {
+    color: #ee2112;
+}

@@ -1,7 +1,12 @@
 .Auth {
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
     text-align: center;
+    margin: 0 auto;
+}
+
+.form {
+    max-width: 300px;
     margin: 0 auto;
 }
 

@@ -13,9 +13,11 @@ const AnswerList = props => {
             </div>
             <ul className={styles.answerList}>
                 {props.answers.map( (answer, index) => {
-                    return <AnswerItem key={index} answer={answer} 
-                    onClickHandler={props.onClickHandler} 
-                    isCorrect={props.isCorrect ? props.isCorrect[answer.answerId] : null } />
+                    return <AnswerItem 
+                        key={index} 
+                        answer={answer} 
+                        onClickHandler={props.onClickHandler} 
+                        isCorrect={props.isCorrect ? props.isCorrect[answer.answerId] : null } />
                 } )}
             </ul>
         </section>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import './App.css';
-import Navbar from './containers/Navbar/Navbar';
+import Navbar from './containers/Navbar/Navbar.jsx';
 import Auth from './containers/Auth/Auth.jsx';
 import ActiveQuiz from './containers/ActiveQuiz';
 import QuizCreator from './containers/QuizCreator/QuizCreator';
