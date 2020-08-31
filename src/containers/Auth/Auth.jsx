@@ -103,7 +103,6 @@ export default class Auth extends Component {
 
                     valid={controlName.valid}
                     touched={controlName.touched}
-                    required={controlName.required}
 
                     inputHandler={event => this.inputHandler(event, type)}
                   />

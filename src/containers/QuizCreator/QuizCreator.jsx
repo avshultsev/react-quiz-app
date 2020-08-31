@@ -3,7 +3,7 @@ import styles from './QuizCreator.module.css';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
 import Select from '../../components/Select/Select';
-import {createControl} from '../../form/formFramework';
+import {createControl, validateControl, validateForm} from '../../form/formFramework';
 
 const createOptionControl = number => {
   return createControl({
@@ -46,17 +46,18 @@ export default class QuizCreator extends Component {
     event.preventDefault();
   }
 
-  inputHandler = (value, controlName) => {
-    // console.log(id, event.target.value);
-    
+  inputHandler = (value, controlName) => {    
     const formControlsCopy = {...this.state.formControls};
     let control = {...formControlsCopy[controlName]};
     
     control.value = value;
+    control.touched = true;
+    control.valid = validateControl(control.value, control.validation);
+
     formControlsCopy[controlName] = control;
-    
     this.setState({
-      formControls: formControlsCopy
+      formControls: formControlsCopy,
+      isFromValid: validateForm(formControlsCopy)
     })
   }
 
@@ -71,6 +72,7 @@ export default class QuizCreator extends Component {
       <div className={styles.QuizCreator}>
         <div>
           <h1>Create your own quiz!</h1>
+
           <form onSubmit={this.submitHandler}>
             {
               Object.keys(this.state.formControls).map((controlName, index) => {
@@ -85,12 +87,9 @@ export default class QuizCreator extends Component {
                       id={control.id || 0}                //config object
                       value={control.value}               //return of createControl()
                       type={control.type}
-
-                      isCorrect={this.state.correctAnswerId === control.id}
                       
                       valid={control.valid}               //return of createControl()
                       touched={control.touched}           //return of createControl()
-                      required={control.required}
           
                       inputHandler={event => this.inputHandler(event.target.value, controlName)}
                     />
@@ -113,6 +112,7 @@ export default class QuizCreator extends Component {
             />
 
           </form>
+
           <div className={styles.buttonSection}>
             <Button 
               type='success' 
@@ -122,11 +122,12 @@ export default class QuizCreator extends Component {
             </Button>
             <Button 
               type='primary' 
-              disabled={!this.state.isFromValid} 
+              disabled={this.state.quiz.length === 0} 
               onClick={this.createQuiz}>
                 Create quiz
             </Button>
           </div>
+
         </div>
       </div>
     )
