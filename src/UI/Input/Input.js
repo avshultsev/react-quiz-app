@@ -15,7 +15,6 @@ const Input = props => {
         id={htmlFor} 
         value={props.value} 
         onChange={props.inputHandler}
-        onBlur={props.validateInput}
       />
       {
         !props.valid && props.touched && <span>{props.errorMessage}</span>

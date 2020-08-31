@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './containers/Navbar/Navbar.jsx';
 import Auth from './containers/Auth/Auth.jsx';
 import ActiveQuiz from './containers/ActiveQuiz';
-import QuizCreator from './containers/QuizCreator/QuizCreator';
+import QuizCreator from './containers/QuizCreator/QuizCreator.jsx';
 import QuizList from './containers/QuizList/QuizList';
 
 function App() {
