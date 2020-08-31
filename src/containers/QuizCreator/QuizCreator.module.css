@@ -2,18 +2,14 @@
     text-align: center;
     width: 100%;
     max-width: 300px;
-    margin: 0 auto 40px;
+    margin: 0 auto;
 }
 
-.QuizCreator > form {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    text-align: left;
-    margin: 0 auto 40px;
+.QuizCreator form {
+    margin-bottom: 30px;
 }
 
-.QuizCreator > div > .buttonSection {
+.QuizCreator .buttonSection {
     display: flex;
     justify-content: space-evenly;
 }
