@@ -20,6 +20,10 @@ hr {
     color: rgba(211, 34, 34, 1);
 }
 
+.answersSection li {
+    text-align: left;
+}
+
 .buttonWrapper {
     width: fit-content;
     margin: 0 auto;

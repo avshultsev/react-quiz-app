@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import styles from './QuizCreator.module.css';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
@@ -62,10 +63,12 @@ export default class QuizCreator extends Component {
     })
   }
 
-  createQuiz = (event) => {
+  createQuiz = event => {
     event.preventDefault();
 
-    console.log(this.state.quiz);
+    axios.post('https://react-quiz-8ea3a.firebaseio.com/quiz.json', this.state.quiz)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
   }
 
   submitHandler = event => {

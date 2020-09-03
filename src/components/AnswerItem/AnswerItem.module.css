@@ -4,6 +4,7 @@
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 5px;
+    text-align: left;
 }
 
 .listItem:hover {

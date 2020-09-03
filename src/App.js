@@ -3,9 +3,9 @@ import {Route, Switch} from 'react-router-dom';
 import './App.css';
 import Navbar from './containers/Navbar/Navbar.jsx';
 import Auth from './containers/Auth/Auth.jsx';
-import ActiveQuiz from './containers/ActiveQuiz';
+import ActiveQuiz from './containers/ActiveQuiz.jsx';
 import QuizCreator from './containers/QuizCreator/QuizCreator.jsx';
-import QuizList from './containers/QuizList/QuizList';
+import QuizList from './containers/QuizList/QuizList.jsx';
 
 function App() {
   return (
