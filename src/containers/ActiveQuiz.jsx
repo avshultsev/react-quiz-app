@@ -1,116 +1,67 @@
 import React from 'react';
-import axios from 'axios';
 import AnswerList from '../components/AnswerList/AnswerList';
 import FinishedQuiz from '../components/FinishedQuiz/FinishedQuiz';
 import styles from './ActiveQuiz.module.css';
 import Loader from '../UI/Loader/Loader.jsx';
+import { connect } from 'react-redux';
+import { getQuizRequest, onAnswerClickHanlder, onSetNullQuiz } from '../redux/actions';
 
 class ActiveQuiz extends React.Component {
-  state = {
-    currentQuestion: 0,
-    isFinished: false,
-    results: {},
-    isCurrentCorrect: null,
-    isFetching: true,
-    quiz: []
+  
+
+  componentDidMount() {
+    this.props.getQuiz(this.props.match.params.id);
   }
 
-  onClickHandler = id => {
-    let currentQuizItem = this.state.quiz[this.state.currentQuestion];
-    let results = { ...this.state.results };
-
-    /* so that one cannot double click the correct answer in one question and finish the quiz */
-    if (this.state.isCurrentCorrect && this.state.isCurrentCorrect[id] === 'correct') {
-      return
-    }
-
-    if (id === currentQuizItem.correctAnswerId) { // if the answer is correct
-      if (!results[currentQuizItem.id]) { // if one answered on this question correctly from the first try
-        results[currentQuizItem.id] = 'correct'
-      }
-
-      this.setState(state => ({
-        isCurrentCorrect: { [id]: 'correct' },
-        results
-      }))
-
-      const timeout = setTimeout(() => {
-        if (this.state.currentQuestion + 1 === this.state.quiz.length) { // if it's the last question
-          this.setState({
-            isCurrentCorrect: null,
-            isFinished: true
-          })
-        } else {
-          this.setState(state => (
-            {
-              currentQuestion: state.currentQuestion + 1,
-              isCurrentCorrect: null
-            }
-          ))
-          clearTimeout(timeout);
-        }
-      }, 1500)
-    } else { // if the answer is wrong
-      results[currentQuizItem.id] = 'error'
-      this.setState(state => ({
-        isCurrentCorrect: { [id]: 'error' },
-        results
-      }))
-    }
-  }
-
-  onRestartQuiz = () => {
-    this.setState({
-      currentQuestion: 0,
-      isFinished: false,
-      results: {},
-      isCurrentCorrect: null,
-    })
-  }
-
-  async componentDidMount() {
-    console.log(this.props.match.params.id)
-
-    try {
-      const response = await axios.get(`https://react-quiz-8ea3a.firebaseio.com/quiz/${this.props.match.params.id}.json`);
-      this.setState({
-        quiz: response.data,
-        isFetching: false
-      })
-    } catch (error) {
-      console.log(error);
-    }
+  componentWillUnmount() {
+    this.props.onSetNullQuiz();
   }
 
   render() {
-    let currentQuizItem = this.state.quiz[this.state.currentQuestion];
-    let quizLength = this.state.quiz.length;
-
     return (
       <div className={styles.activeQuiz}>
         <h1>It's the React quiz!</h1>
         {
-          this.state.isFetching
+          this.props.isFetching || !this.props.quiz
             ? <Loader />
-            : this.state.isFinished
+            : this.props.isFinished
               ? <FinishedQuiz
-                quizLength={quizLength}
-                results={this.state.results}
-                quiz={this.state.quiz}
-                onRestartQuiz={this.onRestartQuiz.bind(this)}
-              />
+                  quizLength={this.props.quiz.length}
+                  results={this.props.results}
+                  quiz={this.props.quiz}
+                  onRestartQuiz={this.props.onSetNullQuiz} //method
+                />
               : <AnswerList
-                currentQuizItem={currentQuizItem}
-                currentQuestion={this.state.currentQuestion}
-                quizLength={quizLength}
-                onClickHandler={this.onClickHandler.bind(this)}
-                answers={currentQuizItem.answers}
-                isCorrect={this.state.isCurrentCorrect}
-              />
+                  currentQuizItem={this.props.quiz[this.props.currentQuestion]}
+                  currentQuestion={this.props.currentQuestion}
+                  quizLength={this.props.quiz.length}
+                  answers={this.props.quiz[this.props.currentQuestion].answers}
+                  isCorrect={this.props.isCurrentCorrect}
+                  onClickHandler={this.props.onAnswerClickHanlder} //method
+                />
         }
       </div>
     )
   }
 }
 
-export default ActiveQuiz;
+const mapStateToProps = state => {
+  return {
+    currentQuestion: state.quiz.currentQuestion,
+    isFinished: state.quiz.isFinished,
+    results: state.quiz.results,
+    isCurrentCorrect: state.quiz.isCurrentCorrect,
+    quiz: state.quiz.quiz,
+    isFetching: state.quiz.isFetching,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getQuiz: id => dispatch(getQuizRequest(id)),
+    onAnswerClickHanlder: answerId => dispatch(onAnswerClickHanlder(answerId)),
+    onSetNullQuiz: () => dispatch(onSetNullQuiz()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveQuiz);
