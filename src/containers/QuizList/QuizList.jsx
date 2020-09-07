@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './QuizList.module.css';
 import Loader from '../../UI/Loader/Loader';
 import { connect } from 'react-redux';
-import { getQuizesRequest } from '../../redux/actions';
+import { getQuizesRequest } from '../../redux/actions/quizActions';
 
 class QuizList extends Component {
 

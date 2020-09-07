@@ -4,11 +4,9 @@ import FinishedQuiz from '../components/FinishedQuiz/FinishedQuiz';
 import styles from './ActiveQuiz.module.css';
 import Loader from '../UI/Loader/Loader.jsx';
 import { connect } from 'react-redux';
-import { getQuizRequest, onAnswerClickHanlder, onSetNullQuiz } from '../redux/actions';
+import { getQuizRequest, onAnswerClickHanlder, onSetNullQuiz } from '../redux/actions/quizActions';
 
 class ActiveQuiz extends React.Component {
-  
-
   componentDidMount() {
     this.props.getQuiz(this.props.match.params.id);
   }

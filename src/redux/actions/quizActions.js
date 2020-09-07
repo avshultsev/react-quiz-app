@@ -8,7 +8,7 @@ import {
   SET_QUIZ_FINISHED,
   SET_NEXT_QUESTION,
   SET_NULL_QUIZ
-} from './actionTypes';
+} from '../actionTypes';
 
 export const getQuizesSuccess = quizes => {
   return {
