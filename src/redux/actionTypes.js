@@ -11,3 +11,6 @@ export const SET_NULL_QUIZ = 'SET_NULL_QUIZ'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const CREATE_QUIZ = 'CREATE_QUIZ'
 export const SET_QUIZ_EMPTY = 'SET_QUIZ_EMPTY'
+
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const LOGOUT = 'LOGOUT'

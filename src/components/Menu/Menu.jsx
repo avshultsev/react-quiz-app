@@ -3,14 +3,25 @@ import { NavLink } from 'react-router-dom'
 import styles from './Menu.module.css'
 import Backdrop from '../../UI/Backdrop/Backdrop'
 
-const links = [
-  { to: '/', label: 'Quiz List', exact: true },
-  { to: '/auth', label: 'Auth', exact: false },
-  { to: '/quiz-creator', label: 'Create a quiz', exact: false },
-]
-
 const Menu = props => {
-  let isMenuOpen = props.isMenuOpen
+  let links = [
+    { to: '/', label: 'Quiz List', exact: true },
+  ];
+
+  if(props.isAuth) {
+    links.push(
+      { to: '/quiz-creator', label: 'Create a quiz', exact: false },
+      { to: '/logout',       label: 'Log out',       exact: false },
+    )
+  } else {
+    links.push(
+      { to: '/auth', label: 'Auth', exact: false },
+    )
+  }
+
+  let isMenuOpen = props.isMenuOpen;
+  
+  console.log('props.isAuth', props.isAuth);
   return (
     <React.Fragment>
       <nav className={`${styles.Menu} ${isMenuOpen ? null : styles.close}`}>

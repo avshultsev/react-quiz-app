@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Navbar.module.css'
 import Menu from '../../components/Menu/Menu.jsx'
+import { connect } from 'react-redux'
 
 class Navbar extends React.Component {
   state = {
@@ -21,10 +22,20 @@ class Navbar extends React.Component {
         </div>
 
         {/* Drawer */}
-        <Menu isMenuOpen={this.state.isMenuOpen} onClick={this.onToggleHandler} />
+        <Menu 
+          isAuth={this.props.isAuth} 
+          isMenuOpen={this.state.isMenuOpen} 
+          onClick={this.onToggleHandler} 
+        />
       </React.Fragment>
     )
   }
 }
 
-export default Navbar
+const mapStateToProps = state => {
+  return {
+    isAuth: !!state.auth.token
+  }
+}
+
+export default connect(mapStateToProps)(Navbar); 

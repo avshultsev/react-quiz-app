@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import styles from './Auth.module.css';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
+import { connect } from 'react-redux';
+import { auth } from '../../redux/actions/authActions';
 
-export default class Auth extends Component {
+class Auth extends Component {
 
   state = {
     isFormValid: false,
@@ -82,33 +83,19 @@ export default class Auth extends Component {
   }
 
   signInHandler = async () => { //login
-    try {
-      const formControls = this.state.formControls;
-      const authData = {
-        email: formControls.email.value,
-        password: formControls.password.value,
-        returnSecureToken: true
-      }
-      const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCMheNS1NSAy0K9L7cq5k-P3eu5DZ4JFg0', authData);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.auth(
+      this.state.formControls.email.value, 
+      this.state.formControls.password.value, 
+      true
+    )
   }
 
   signUpHandler = async () => { //register
-    try {
-      const formControls = this.state.formControls;
-      const authData = {
-        email: formControls.email.value,
-        password: formControls.password.value,
-        returnSecureToken: true
-      }
-      const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCMheNS1NSAy0K9L7cq5k-P3eu5DZ4JFg0', authData);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.auth(
+      this.state.formControls.email.value, 
+      this.state.formControls.password.value, 
+      false
+    )
   }
 
   render() {
@@ -161,3 +148,11 @@ export default class Auth extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
